@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KETI 면접 발표자료</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .presentation-container {
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16/9;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 30px 40px 80px 40px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-title {
+            font-size: 1.7em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .slide-subtitle {
+            font-size: 1.05em;
+            color: #4a5568;
+            margin-bottom: 18px;
+        }
+
+        .content-box {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .content-box h3 {
+            font-size: 1.1em;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .content-box p, .content-box li {
+            font-size: 0.88em;
+            color: #4a5568;
+            line-height: 1.5;
+            margin-bottom: 5px;
+        }
+
+        .content-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-box li:before {
+            content: "▪";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffd89b 0%, #19547b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .cover-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .cover-slide .slide-title {
+            color: white;
+            font-size: 3em;
+            border: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .cover-slide .slide-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.5em;
+        }
+
+        .cover-slide .info {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.2em;
+            position: absolute;
+            bottom: 100px;
+            right: 200px;
+            text-align: right;
+            margin-top: 0;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+
+        .nav-btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: #718096;
+            font-size: 1em;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            margin: 0 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item h4 {
+            color: #667eea;
+            font-size: 1em;
+            margin-bottom: 6px;
+        }
+
+        .timeline-item p {
+            color: #4a5568;
+            font-size: 0.85em;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 12px;
+        }
+
+        .card {
+            background: white;
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        }
+
+        .card h4 {
+            color: #667eea;
+            font-size: 1.05em;
+            margin-bottom: 10px;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            padding: 4px 0;
+            color: #4a5568;
+            font-size: 0.88em;
+        }
+
+        .card li:before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.78em;
+            margin: 3px;
+        }
+
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .flow-box {
+            flex: 1;
+            padding: 10px 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+
+        .flow-arrow {
+            font-size: 1.5em;
+            color: #667eea;
+            margin: 0 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: 표지 -->
+        <div class="slide active cover-slide" id="slide-1">
+            <h1 class="slide-title">한국전자기술연구원(KETI) 전공기술면접</h1>
+            <p class="slide-subtitle" style="font-size: 1.1em;">지원 분야 : 엣지가속기 및 임베디드 H/W 기반 제조 AI 기술 개발</p>
+            <div class="info">
+                <p>2025.12.15</p>
+                <p>지원자 김대호</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: 자기소개 -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title">자기소개 및 지원동기</h2>
+            <div class="content-box">
+                <h3>🎯 경력 요약</h3>
+                <p><strong style="color: #2d3748; font-size: 1.05em;">8년간</strong> 항공 및 자동차 임베디드 시스템 분야에서 신호처리 및 검증 업무 수행</p>
+                <ul>
+                    <li><strong>한국항공우주산업(KAI)</strong>: KF-21 시스템 통합시험 검증</li>
+                    <li><strong>현대오토에버</strong>: 차량통합제어기(VPC) 자동화 검증 및 CT 파이프라인 구축</li>
+                </ul>
+            </div>
+            <div class="content-box">
+                <h3>💡 핵심 역량</h3>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+                    <span class="badge">아날로그/디지털 신호처리</span>
+                    <span class="badge">작동기/IMU 제어</span>
+                    <span class="badge">데이터 수집 및 모니터링</span>
+                    <span class="badge">AI 기반 자동화</span>
+                    <span class="badge">CI/CD/CT 파이프라인 구축</span>
+                    <span class="badge">임베디드 시스템 검증</span>
+                </div>
+            </div>
+            <div class="content-box">
+                <h3>🎓 지원동기</h3>
+                <p>임베디드 제어 시스템에서의 <strong>검증 파이프라인 구축 및 AI 기반 자동화 경험</strong>을 바탕으로, KETI의 <strong>엣지 가속기 기반 제조 AI 기술 개발</strong>에 기여하고자 지원하였습니다. 항공/자동차 분야에서 습득한 신호처리 및 프로세스 자동화 노하우를 제조 공정 지능화에 적용하여, 산업 현장의 실질적인 문제를 해결하고 싶습니다.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: KAI 신호처리 경험 -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">항공 분야: 신호 수집 및 처리 경험 (KAI)</h2>
+            <p class="slide-subtitle">KF-21 비행제어시스템 OFP 통합 검증</p>
+            <div class="content-box">
+                <h3>📡 담당 CSU 및 신호처리 업무</h3>
+                <ul>
+                    <li><strong>아날로그/디스크리트 신호 수집 및 검증</strong> - 다양한 센서 입력 신호 처리</li>
+                    <li><strong>작동기 관리</strong> - 제어 신호 출력 및 피드백 모니터링</li>
+                    <li><strong>IMU 모니터 관리</strong> - 관성측정장치 데이터 실시간 수집/분석</li>
+                    <li><strong>NVM 데이터 관리</strong> - 비휘발성 메모리 데이터 처리</li>
+                    <li><strong>AutoRig, XCG 모니터</strong> - 시스템 파라미터 자동 조정 및 모니터링</li>
+                </ul>
+            </div>
+            <div class="content-box">
+                <h3>🔧 ETS 및 In-house Tool 활용 자동화</h3>
+                <p>절차서 기반의 <strong>자동화 시험 프로그램 개발</strong></p>
+                <ul>
+                    <li>다양한 입출력 신호를 실시간으로 수집하고 검증</li>
+                    <li>Safety-Critical 환경에서 신호 정확성 및 신뢰성 보장</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4: 현대오토에버 데이터 모니터링 -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">자동차 분야: 데이터 모니터링 및 자동 판단 (현대오토에버)</h2>
+            <p class="slide-subtitle">VPC CT 환경 - 테스트 입력 모니터링 및 자동 수행</p>
+            <div class="content-box">
+                <h3>📊 담당 CSU 및 데이터 처리</h3>
+                <ul>
+                    <li><strong>UDS/OTA/CAN 통신</strong> - 차량 네트워크 데이터 수집 및 분석</li>
+                    <li><strong>사이버보안(ASK)</strong> - 보안 관련 데이터 모니터링</li>
+                    <li><strong>BSW(Basic Software)</strong> - 기본 소프트웨어 계층 검증</li>
+                </ul>
+            </div>
+            <div class="content-box">
+                <h3>🤖 CT 환경에서의 지능형 자동화</h3>
+                <p><strong>테스트 입력 유형 자동 판단 및 수행 시스템 구축</strong></p>
+                <div class="flow-diagram">
+                    <div class="flow-box">데이터<br>모니터링</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">입력 유형<br>자동 판단</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">테스트<br>자동 수행</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">결과<br>자동 리포팅</div>
+                </div>
+                <ul>
+                    <li>Jenkins 빌드 산출물 기반 <strong>Daily Test 자동 실행</strong></li>
+                    <li>실시간 데이터 분석을 통한 <strong>테스트 시나리오 자동 선택</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: 통합 Tool 제어 라이브러리 -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">대표 성과: 통합 Tool 제어 라이브러리 개발</h2>
+            <p class="slide-subtitle">다양한 임베디드 H/W 장비 통합 제어</p>
+            <div class="content-box">
+                <h3>⚙️ 통합 제어 대상 장비</h3>
+                <ul>
+                    <li><strong>PowerSupply (Power Box)</strong> - 전원 공급 제어</li>
+                    <li><strong>CAN/SPI/LIN 통신 모듈</strong> - 다양한 통신 프로토콜 처리</li>
+                    <li><strong>Relay 제어</strong> - 물리적 스위칭 자동화</li>
+                    <li><strong>I/O Port</strong> - 디지털/아날로그 입출력 관리</li>
+                </ul>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🔧 개발 내용</h4>
+                    <ul>
+                        <li>Python/TypeScript 기반 라이브러리</li>
+                        <li>분산된 상용 툴 통합 관리</li>
+                        <li>제어기별 테스트 스크립트 자동화</li>
+                        <li>AI(Github Copilot) 활용 개발</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>📈 성과</h4>
+                    <ul>
+                        <li>수동 검증 → 자동화 전환</li>
+                        <li>개발 기간 5~6개월 → 단축</li>
+                        <li>Daily Test 환경 실현</li>
+                        <li>검증 효율성 대폭 향상</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: CT 파이프라인 아키텍처 -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">CT 파이프라인: 엣지 기반 자동화 시스템</h2>
+            <div class="content-box">
+                <h3>🔄 전체 자동화 프로세스</h3>
+                <div class="flow-diagram">
+                    <div class="flow-box">Jenkins<br>빌드</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">펌웨어<br>업데이트</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">신호 수집<br>& 분석</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">자동<br>테스트</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">ALM<br>리포팅</div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🎯 엣지 디바이스 활용</h4>
+                    <ul>
+                        <li>임베디드 타겟에서 직접 데이터 수집</li>
+                        <li>실시간 신호 처리 및 분석</li>
+                        <li>로컬 판단 후 자동 액션</li>
+                        <li>클라우드 연동 결과 리포팅</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🤖 AI 기술 적용</h4>
+                    <ul>
+                        <li>MCP Agent: JIRA/Codebeamer 자동화</li>
+                        <li>Github Copilot: 스크립트 생성</li>
+                        <li>데이터 패턴 기반 테스트 자동 선택</li>
+                        <li>UML 다이어그램 자동 생성</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: 입사 후 계획 1 (단기) -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">입사 후 연구 계획 (단기)</h2>
+            <p class="slide-subtitle">제조 공정 데이터 수집 및 신호처리 시스템 구축</p>
+            <div class="content-box">
+                <h3>📊 Phase 1: 현황 분석 및 데이터 수집 체계 구축 (1-3개월)</h3>
+                <ul>
+                    <li>KETI 제조 공정의 <strong>센서 및 데이터 수집 현황</strong> 분석</li>
+                    <li>아날로그/디지털 신호 처리 요구사항 파악</li>
+                    <li>기존 엣지 디바이스 인프라 조사</li>
+                    <li>데이터 수집 병목 구간 식별</li>
+                </ul>
+            </div>
+            <div class="content-box">
+                <h3>🔧 Phase 2: 엣지 기반 신호처리 모듈 개발 (3-6개월)</h3>
+                <ul>
+                    <li><strong>엣지 가속기 기반 실시간 신호처리</strong> 시스템 개발</li>
+                    <li>다양한 산업 센서 데이터 통합 수집 라이브러리 구축</li>
+                    <li>KAI/현대 경험 적용: 아날로그/디지털 신호 자동 처리</li>
+                    <li>AI 기반 데이터 이상 패턴 자동 탐지</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8: 입사 후 계획 2 (중장기) -->
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">입사 후 연구 계획 (중·장기)</h2>
+            <p class="slide-subtitle">엣지 기반 지능형 제조 AI 서비스 플랫폼 개발</p>
+            <div class="content-box">
+                <h3>🎯 최종 목표: 엣지-클라우드 협업 제조 AI 시스템</h3>
+                <p>산업 현장의 다양한 데이터를 실시간 수집·처리하고 AI로 최적화하는 플랫폼</p>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>엣지 계층 (Edge Layer)</h4>
+                    <ul>
+                        <li>실시간 신호 수집 및 전처리</li>
+                        <li>엣지 AI 추론 (이상 탐지)</li>
+                        <li>로컬 의사결정 및 제어</li>
+                        <li>저지연 응답 보장</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>클라우드 계층 (Cloud Layer)</h4>
+                    <ul>
+                        <li>대용량 데이터 통합 분석</li>
+                        <li>AI 모델 학습 및 최적화</li>
+                        <li>공정 파라미터 자동 도출</li>
+                        <li>산업별 맞춤형 서비스</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-box" style="margin-top: 20px;">
+                <h3>🏆 KETI 기여</h3>
+                <ul>
+                    <li>산업별 <strong>엣지 AI 기술이전</strong> 및 <strong>특허 개발</strong></li>
+                    <li>임베디드 HW + 신호처리 + 제조 AI 융합 기술 선도</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: 강점 및 차별성 -->
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">나의 강점 및 차별성</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🔥 실전 신호처리 경험</h4>
+                    <ul>
+                        <li>항공: 아날로그/디스크리트 신호 처리</li>
+                        <li>자동차: CAN/UDS 통신 데이터 분석</li>
+                        <li>다양한 센서/액추에이터 제어</li>
+                        <li>Safety-Critical 시스템 검증</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🤖 AI 기반 자동화 역량</h4>
+                    <ul>
+                        <li>데이터 모니터링 → 자동 판단 시스템</li>
+                        <li>MCP Agent 개발 및 현업 적용</li>
+                        <li>CI/CD/CT 파이프라인 구축</li>
+                        <li>개인 시간 투자한 기술 습득</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-box" style="margin-top: 20px;">
+                <h3>💼 결론</h3>
+                <p style="font-size: 1.05em;">
+                    <strong style="color: #2d3748;">임베디드 신호처리 실무 경험</strong> +
+                    <strong style="color: #2d3748;">엣지 디바이스 제어 경험</strong> +
+                    <strong style="color: #2d3748;">AI 기반 자동화 경험</strong>
+                </p>
+                <p style="margin-top: 12px;">
+                    = <strong>산업 데이터 수집·신호처리를 위한 엣지 가속기 및 임베디드 H/W 기술</strong><br>
+                    + <strong>엣지 기반 제조 AI 서비스 기술</strong> 개발에 즉시 기여 가능
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 10: 마무리 -->
+        <div class="slide cover-slide" id="slide-10">
+            <h1 class="slide-title" style="font-size: 2.5em;">감사합니다</h1>
+            <div class="content-box" style="background: rgba(255,255,255,0.2); border: none; margin-top: 40px;">
+                <p style="color: white; font-size: 1.3em; line-height: 2;">
+                    <strong>8년간의 임베디드 신호처리 경험</strong>과<br>
+                    <strong>AI 기반 엣지 자동화 기술</strong>을 바탕으로<br>
+                    KETI의 <strong style="color: white; font-size: 1.2em; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px;">엣지 제조 AI 서비스 기술 발전</strong>에<br>
+                    기여하겠습니다.
+                </p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="slide-number">
+            <span id="currentSlide">1</span> / <span id="totalSlides">10</span>
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">◀ 이전</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">다음 ▶</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // URL 해시 기반 슬라이드 이동
+        function goToSlideByHash() {
+            const hash = window.location.hash;
+            if (hash) {
+                const slideNum = parseInt(hash.replace('#', ''));
+                if (slideNum >= 1 && slideNum <= totalSlides) {
+                    showSlide(slideNum - 1);
+                }
+            }
+        }
+
+        // 해시 변경 감지
+        window.addEventListener('hashchange', goToSlideByHash);
+
+        // 초기 설정
+        showSlide(0);
+        goToSlideByHash();
+    </script>
+</body>
+</html>
