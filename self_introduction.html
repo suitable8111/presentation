@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김대호 - 자기소개서</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: "";
+            width: 5px;
+            height: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 15px 20px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .info-value {
+            color: #4a5568;
+        }
+
+        .career-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #667eea;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .career-item:hover {
+            box-shadow: 0 5px 20px rgba(102,126,234,0.15);
+            transform: translateX(5px);
+        }
+
+        .career-item.purple {
+            border-left-color: #764ba2;
+        }
+
+        .career-item.blue {
+            border-left-color: #4299e1;
+        }
+
+        .career-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .career-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .career-period {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .career-role {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .career-desc {
+            color: #4a5568;
+        }
+
+        .career-desc ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .career-desc li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .career-desc li::before {
+            content: "▪";
+            color: #667eea;
+            position: absolute;
+            left: 0;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .skill-category {
+            margin-bottom: 20px;
+        }
+
+        .skill-category h4 {
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .highlight-box p {
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlight-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #4a5568;
+        }
+
+        .highlight-box li::before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .intro-text {
+            color: #4a5568;
+            font-size: 1.05em;
+            line-height: 2;
+            text-align: justify;
+        }
+
+        .intro-text strong {
+            color: #2d3748;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .project-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .project-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-card li {
+            padding: 5px 0;
+            color: #4a5568;
+            font-size: 0.95em;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            text-align: center;
+            color: #718096;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .career-header {
+                flex-direction: column;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .career-item:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>자기소개서</h1>
+            <p class="subtitle">임베디드 시스템 검증 / AI 기반 자동화 엔지니어</p>
+        </div>
+
+        <div class="content">
+            <!-- 기본 정보 -->
+            <section class="section">
+                <h2 class="section-title">기본 정보</h2>
+                <div class="info-grid">
+                    <span class="info-label">총 경력</span>
+                    <span class="info-value">8년 3개월</span>
+                    <span class="info-label">전문 분야</span>
+                    <span class="info-value">임베디드 시스템 검증, CI/CD/CT 파이프라인 구축, AI 기반 자동화</span>
+                    <span class="info-label">학력</span>
+                    <span class="info-value">부산대학교 전기전자컴퓨터공학부 석사 (소프트웨어 공학)</span>
+                </div>
+            </section>
+
+            <!-- 자기소개 -->
+            <section class="section">
+                <h2 class="section-title">자기소개</h2>
+                <p class="intro-text">
+                    저는 <strong>항공 및 자동차 분야</strong>에서 임베디드 제어 시스템/소프트웨어 레벨의 검증 개발 경험을 쌓아온 엔지니어입니다.
+                    <strong>자동화 검증 및 CT(Continuous Testing) 파이프라인 구축</strong>, 그리고 <strong>AI 기반 자동화</strong> 경험을 바탕으로
+                    효율적이고 신뢰성 높은 검증 시스템을 구축하는 것을 목표로 하고 있습니다.
+                </p>
+                <p class="intro-text" style="margin-top: 15px;">
+                    KAI에서는 KF-21 비행제어 시스템의 통합시험 자동화를, 현대오토에버에서는 차량통합제어기(VPC)의 CI/CD/CT 파이프라인을 구축하며
+                    Safety-Critical 시스템에 대한 깊은 이해와 실무 역량을 갖추었습니다.
+                </p>
+            </section>
+
+            <!-- 경력 사항 -->
+            <section class="section">
+                <h2 class="section-title">경력 사항</h2>
+
+                <div class="career-item purple">
+                    <div class="career-header">
+                        <span class="career-title">자동차 분야</span>
+                        <span class="career-period">2023.06 ~ 현재 (2년 5개월)</span>
+                    </div>
+                    <div class="career-desc">
+                        <p>차량통합제어기(VPC) 자동화 검증 및 CI/CD/CT 파이프라인 구축</p>
+                        <ul>
+                            <li>UDS/OTA/CAN 통신 데이터 수집 및 분석</li>
+                            <li>사이버보안(ASK) 데이터 모니터링</li>
+                            <li>BSW(Basic Software) 기본 검증 - OS, Task, SafetyValue 등</li>
+                            <li>RAG Flow 활용 테스트 자동 판단 및 수행 시스템 개발</li>
+                            <li>통합 Tool 제어 라이브러리/프레임워크 개발</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="career-item">
+                    <div class="career-header">
+                        <span class="career-title">한국항공우주산업(KAI)</span>
+                        <span class="career-period">2019.07 ~ 2023.05 (3년 10개월)</span>
+                    </div>
+                    <p class="career-role">비행제어시험/HW팀 선임연구원</p>
+                    <div class="career-desc">
+                        <p>KF-21 비행제어 시스템 통합시험 자동화 검증 및 산출물 점검</p>
+                        <ul>
+                            <li>아날로그/디스크리트 신호 검증 - PPI(조종사 입력) 신호</li>
+                            <li>작동기 검증 - 플랩/러더 출력 및 피드백 값 모니터링</li>
+                            <li>IMU 모니터 검증 - 관성측정장치 디지털 데이터 모니터링</li>
+                            <li>NVM 데이터 검증 - 비휘발성 영역 Block Size 검증</li>
+                            <li>SIL 기반 통합 테스트 시험 환경(ETS) 자동화 검증</li>
+                            <li>실시간 비행데이터 시각화 프로그램 개발</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="career-item blue">
+                    <div class="career-header">
+                        <span class="career-title">부산대학교 대학원</span>
+                        <span class="career-period">2017.03 ~ 2019.03 (2년)</span>
+                    </div>
+                    <p class="career-role">소프트웨어 공학 연구실 석사과정</p>
+                    <div class="career-desc">
+                        <p>모놀리식 to 마이크로서비스(MSA) 전환 방법 연구</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 핵심 역량 -->
+            <section class="section">
+                <h2 class="section-title">핵심 역량</h2>
+
+                <div class="skill-category">
+                    <h4>전문 분야</h4>
+                    <div class="skills-container">
+                        <span class="skill-tag">임베디드 시스템 검증</span>
+                        <span class="skill-tag">CI/CD/CT 파이프라인 구축</span>
+                        <span class="skill-tag">AI 기반 자동화 검증</span>
+                        <span class="skill-tag">V&V 사이클 기반 프로세스</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>기술 스택</h4>
+                    <div class="skills-container">
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">UML</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">마이크로서비스</span>
+                        <span class="skill-tag">서버리스</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>도메인 지식</h4>
+                    <div class="skills-container">
+                        <span class="skill-tag">CAN/UDS/OTA 통신</span>
+                        <span class="skill-tag">아날로그/디지털 신호처리</span>
+                        <span class="skill-tag">Safety-Critical 시스템</span>
+                        <span class="skill-tag">데이터 수집 및 시각화</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 대표 프로젝트 -->
+            <section class="section">
+                <h2 class="section-title">대표 프로젝트</h2>
+
+                <div class="highlight-box">
+                    <h4>통합 Tool 제어 라이브러리/프레임워크 개발</h4>
+                    <p>임베디드 H/W 검증 장비 통합 제어 라이브러리/프레임워크 개발</p>
+                    <ul>
+                        <li>Python/TypeScript 기반 통합 제어 라이브러리 개발</li>
+                        <li>PowerSupply, CAN/SPI/LIN 통신 모듈, Trace32, Relay 제어 통합</li>
+                        <li>분산된 상용 툴 통합 관리 및 표준화</li>
+                        <li>제어기별 테스트 스크립트 자동화</li>
+                        <li>검증 시간 대폭 단축 및 Daily Test 환경 실현</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>CT 파이프라인 자동화 시스템 구축</h4>
+                    <p>품질관리를 위한 데일리 CI/CD/CT 파이프라인 구축</p>
+                    <ul>
+                        <li>Jenkins 서버 연동 Daily 롬 자동 입수</li>
+                        <li>자동 펌웨어 업데이트 및 테스트 수행</li>
+                        <li>ALM, Jira 연동 결과 자동 리포팅</li>
+                        <li>MCP Agent를 통한 JIRA/ALM 자동화</li>
+                        <li>RAG Flow 활용 컨텍스트 기반 테스트 자동 판단 시스템 개발</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 강점 -->
+            <section class="section">
+                <h2 class="section-title">강점 및 차별점</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h4>자동차 및 항공산업 신호처리 경험</h4>
+                        <ul>
+                            <li>항공: 아날로그/디스크리트/디지털 신호 처리</li>
+                            <li>자동차: CAN/UDS/OTA 데이터 분석</li>
+                            <li>다양한 센서/신호 제어 검증 경험</li>
+                            <li>Safety-Critical 시스템 검증 전문성</li>
+                        </ul>
+                    </div>
+                    <div class="project-card">
+                        <h4>AI 기반 자동화 역량</h4>
+                        <ul>
+                            <li>데이터 모니터링 → 자동 판단 시스템 구축</li>
+                            <li>MCP Agent 개발 및 현업 적용</li>
+                            <li>CI/CD/CT 파이프라인 설계 및 구축</li>
+                            <li>Github Copilot 활용 개발 최적화</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="footer">
+            <p>본 자기소개서는 2025년 기준으로 작성되었습니다.</p>
+        </div>
+    </div>
+</body>
+</html>
