@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>김대호 - 자기소개서</title>
+    <title>자기소개서</title>
     <style>
         * {
             margin: 0;
@@ -310,12 +310,12 @@
             * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
-                color-adjust: exact !important;
             }
 
-            body {
+            html, body {
                 background: white !important;
-                padding: 0;
+                padding: 0 !important;
+                margin: 0 !important;
             }
 
             .container {
@@ -323,23 +323,50 @@
                 border-radius: 0;
             }
 
-            .header {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-                color: white !important;
-            }
-
-            .skill-tag {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-                color: white !important;
-            }
-
-            .career-period {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-                color: white !important;
+            /* 페이지 나눔 방지 */
+            .section {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
             }
 
             .career-item {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
                 border-left: 4px solid #667eea !important;
+            }
+
+            .highlight-box {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .project-card {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .info-grid {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                background-color: #f8f9fa !important;
+            }
+
+            /* 배경색 강제 적용 */
+            .header {
+                background: #667eea !important;
+                color: white !important;
+                padding: 40px 30px !important;
+            }
+
+            .skill-tag {
+                background: #667eea !important;
+                color: white !important;
+                border: none !important;
+            }
+
+            .career-period {
+                background: #667eea !important;
+                color: white !important;
             }
 
             .career-item.purple {
@@ -350,8 +377,16 @@
                 border-left-color: #4299e1 !important;
             }
 
+            .section-title {
+                border-bottom: 3px solid #667eea !important;
+            }
+
             .section-title::before {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+                background: #667eea !important;
+            }
+
+            .highlight-box {
+                background-color: #f6f8fb !important;
             }
 
             .career-item:hover {
