@@ -307,14 +307,51 @@
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
             body {
-                background: white;
+                background: white !important;
                 padding: 0;
             }
 
             .container {
                 box-shadow: none;
                 border-radius: 0;
+            }
+
+            .header {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+                color: white !important;
+            }
+
+            .skill-tag {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+                color: white !important;
+            }
+
+            .career-period {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+                color: white !important;
+            }
+
+            .career-item {
+                border-left: 4px solid #667eea !important;
+            }
+
+            .career-item.purple {
+                border-left-color: #764ba2 !important;
+            }
+
+            .career-item.blue {
+                border-left-color: #4299e1 !important;
+            }
+
+            .section-title::before {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
             }
 
             .career-item:hover {
@@ -340,7 +377,7 @@
                     <span class="info-value">8년 3개월</span>
                     <span class="info-label">전문 분야</span>
                     <span class="info-value">임베디드 시스템 검증, CI/CD/CT 파이프라인 구축, AI 기반 자동화</span>
-                    <span class="info-label">학력</span>
+                    <span class="info-label">학력 (최종)</span>
                     <span class="info-value">부산대학교 전기전자컴퓨터공학부 석사 (소프트웨어 공학)</span>
                 </div>
             </section>
